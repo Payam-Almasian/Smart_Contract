@@ -7,12 +7,26 @@ contract Access_Control {
     
     mapping ( uint256 => string)  Access_Policy ;
     mapping ( uint256 => string)  File_Directory ;
+    mapping ( uint256 => string)  CP_ABE ;
 
     constructor() public {
     
          owner = msg.sender;
         
     }
+    
+    
+    function get_file_CP_ABE( uint256 FileID ) public view returns (string memory) {
+        return CP_ABE[FileID] ;
+    }
+    
+    
+    function set_file_CP_ABE( uint256 id , string memory ABE_KEY ) public {
+        require(msg.sender == owner);
+        CP_ABE[id] = ABE_KEY ;
+    }
+    
+    
 
 
     function get_file_access_policy( uint256 FileID ) public view returns (string memory) {
