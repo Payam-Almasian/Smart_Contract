@@ -13,7 +13,7 @@ contract Access_Control {
         
     }
     
-    mapping ( uint256 => File)  Shared_Files ;
+    mapping ( string => File)  Shared_Files ;
     
     address  owner ; 
     
@@ -32,8 +32,8 @@ contract Access_Control {
         
         numFiles++;
         
-        Shared_Files[numFiles] = File ( {Name:Owner_File_Name , Access_Policy:Owner_Access_Policy  });
-        Shared_Files[numFiles].CP_ABE[USER_ID] = Owner_ABE_KEY ;
+        Shared_Files[Owner_File_Name] = File ( {Name:Owner_File_Name , Access_Policy:Owner_Access_Policy  });
+        Shared_Files[Owner_File_Name].CP_ABE[USER_ID] = Owner_ABE_KEY ;
         
         // File Uploaded_file = fooStruct({foo:1, fighter:2});
         
@@ -41,21 +41,21 @@ contract Access_Control {
     }
     
     
-    function get_file_name( uint256 File_Name ) public view returns (string memory) {
+    function get_file_name( string memory File_Name ) public view returns (string memory) {
         
         return Shared_Files[File_Name].Name ;
         
         
     }
     
-    function get_file_access_policy( uint256 File_Name ) public view returns (string memory) {
+    function get_file_access_policy( string memory File_Name ) public view returns (string memory) {
         
         return Shared_Files[File_Name].Access_Policy ;
         
         
     }
     
-    function get_file_cp_abe_key( uint256 File_Name , string memory UserID ) public view returns (string memory) {
+    function get_file_cp_abe_key( string memory File_Name , string memory UserID ) public view returns (string memory) {
         
         return Shared_Files[File_Name].CP_ABE[UserID] ;
         
