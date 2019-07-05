@@ -15,7 +15,7 @@ contract Access_Control {
     
     mapping ( uint256 => File)  Shared_Files ;
     
-    address public owner ; 
+    address  owner ; 
     
 
     constructor() public {
@@ -55,7 +55,7 @@ contract Access_Control {
         
     }
     
-    function get_file_access_policy( uint256 File_Name , string memory UserID ) public view returns (string memory) {
+    function get_file_cp_abe_key( uint256 File_Name , string memory UserID ) public view returns (string memory) {
         
         return Shared_Files[File_Name].CP_ABE[UserID] ;
         
