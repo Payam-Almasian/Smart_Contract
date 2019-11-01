@@ -1,28 +1,6 @@
- status 	0x1 Transaction mined and execution succeed
- transaction hash 	0x6f747eb8e6a90afc646be14898754b0cec559f48b751b4667fe996aaf0d01044
- from 	0xca35b7d915458ef540ade6068dfe2f44e8fa733c
- to 	File_Access_Control.Set_Access_Request(string,string) 0xbde95422681e4c3984635af2f2f35f8c44a4ddc9
- gas 	3000000 gas 
- transaction cost 	32664 gas 
- execution cost 	9728 gas 
- hash 	0x6f747eb8e6a90afc646be14898754b0cec559f48b751b4667fe996aaf0d01044
- input 	0xcc3...00000
- decoded input 	{
-	"string req": "123_new",
-	"string req_id": "456"
-}
- decoded output 	{
-	"0": "string: Done"
-}
- logs 	[]
- value 	0 wei 
- 
- transaction cost 	33577 gas 
- execution cost 	10641 gas 
- 
-| function | transaction cost | execution cost | 
-| --- | --- | --- | --- | 
-| Set_Access_Request | 32664 gas | 9728 gas | 
-| Set_Access_Response | 33577 gas  | 10641 gas  |
-| Get_Req | 25752 gas  | 3776 gas | 
-| Revoke | 17178 gas | 12379 gas | 
+| Function        | Transaction Cost           | Execution Cost  |
+| :-------------: |:-------------:| :-----:|
+| Set_Access_Request     | 32664 gas | 9728 gas |
+| Set_Access_Response     | 33577 gas |  10641 gas |
+| Get_Req | 25752 gas     |   3776 gas |
+| Revoke | 17178 gas  | 12379 gas | 
