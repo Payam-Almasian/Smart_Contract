@@ -1,69 +1,43 @@
-pragma solidity ^0.5.1;
+pragma solidity >=0.4.22 <0.6.0;
+contract File_Access_Control {
 
-contract Access_Control {
-    
-    
-    struct  File
+    struct  Access_Request_And_Response
     {
        
-       string Name ;
-       string Access_Policy ;
-       mapping ( string => string)  CP_ABE ; 
+       string Req ;
+       string Z_U ;
+        
         
         
     }
+
+    address private Owner;
     
-    mapping ( string => File)  Shared_Files ;
-    
-    address  owner ; 
+    mapping(string => Access_Request_And_Response) private ACL;
     
 
+    /// Create a new ballot with $(_numProposals) different proposals.
     constructor() public {
-    
-         owner = msg.sender;
+        Owner = msg.sender;
         
     }
     
-    uint numFiles;
     
-    function CREATE_FILE(  string memory Owner_File_Name   , string memory Owner_Access_Policy  , string memory Owner_ABE_KEY ,  string memory USER_ID  ) public {
+    function Set_Access_Request(  string memory req   , string memory req_id   )  public payable  returns (string memory)  {
         
-        require(msg.sender == owner);
+        //require(msg.sender == owner);
         
-        numFiles++;
         
-        Shared_Files[Owner_File_Name] = File ( {Name:Owner_File_Name , Access_Policy:Owner_Access_Policy  });
-        Shared_Files[Owner_File_Name].CP_ABE[USER_ID] = Owner_ABE_KEY ;
+        ACL[req_id] = Access_Request_And_Response ( {Req:req , Z_U:""  });
+        return "Done" ;
+        
         
         // File Uploaded_file = fooStruct({foo:1, fighter:2});
         
         
     }
-    
-    
-    function get_file_name( string memory File_Name ) public view returns (string memory) {
-        
-        return Shared_Files[File_Name].Name ;
-        
-        
-    }
-    
-    function get_file_access_policy( string memory File_Name ) public view returns (string memory) {
-        
-        return Shared_Files[File_Name].Access_Policy ;
-        
-        
-    }
-    
-    function get_file_cp_abe_key( string memory File_Name , string memory UserID ) public view returns (string memory) {
-        
-        return Shared_Files[File_Name].CP_ABE[UserID] ;
-        
-        
-    }
-    
-    
-    
-    
-    
+
+    /// Give $(toVoter) the right to vote on this ballot.
+    /// May only be called by $(chairperson).
+   
 }
