@@ -6,6 +6,7 @@ contract File_Access_Control {
        
        string Req ;
        string Z_U ;
+       uint256 Paid_Price;
         
         
         
@@ -19,10 +20,9 @@ contract File_Access_Control {
     mapping(string => Access_Request_And_Response) private ACL;
     
 
-    /// Create a new ballot with $(_numProposals) different proposals.
-    constructor( address payable Owner_wallet) public {
+    constructor() public {
         Owner = msg.sender;
-        wallet = Owner_wallet;
+        
     }
     
     
@@ -32,16 +32,41 @@ contract File_Access_Control {
         
         wallet.transfer(msg.value);
         
-        ACL[req_id] = Access_Request_And_Response ( {Req:req , Z_U:""  });
+        ACL[req_id] = Access_Request_And_Response ( {Req:req , Z_U:""  , Paid_Price:msg.value });
         return "Done" ;
         
         
+
         
+    }
+    
+    function Set_Access_Response ( string memory req_id , string memory Owner_Z_U  ) public returns (string memory)
+    {
+        require(msg.sender == Owner);
+        Access_Request_And_Response memory Temp = ACL[req_id] ;
+        Temp.Z_U=Owner_Z_U ;
+        ACL[req_id] = Temp ;
+        return "Done" ; 
         
+    }
+    
+    
+    function Get_Req( string memory req_id) public view returns ( string memory , string memory , string memory  )
+    {
+        
+        return ( req_id ,  ACL[req_id].Req , ACL[req_id].Z_U ) ;
+    
+    }
+    
+    
+    function Revoke ( string memory req_id) public returns ( string memory   )
+    {
+        require(msg.sender == Owner);
+        delete ACL[req_id];
+        return "Done" ;
         
     }
 
-    /// Give $(toVoter) the right to vote on this ballot.
-    /// May only be called by $(chairperson).
+ 
    
 }
