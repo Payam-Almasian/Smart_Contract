@@ -1,0 +1,11 @@
+# Smart_Contract
+
+
+
+
+| Function        | Transaction Cost           | Execution Cost  |
+| :-------------: |:-------------:| :-----:|
+| Set_Access_Request     | 32664 gas | 9728 gas |
+| Set_Access_Response     | 33577 gas |  10641 gas |
+| Get_Req | 25752 gas     |   3776 gas |
+| Revoke | 17178 gas  | 12379 gas | 
