@@ -13,13 +13,16 @@ contract File_Access_Control {
 
     address private Owner;
     
+    address payable private wallet;
+
+    
     mapping(string => Access_Request_And_Response) private ACL;
     
 
     /// Create a new ballot with $(_numProposals) different proposals.
-    constructor() public {
+    constructor( address payable Owner_wallet) public {
         Owner = msg.sender;
-        
+        wallet = Owner_wallet;
     }
     
     
@@ -27,12 +30,13 @@ contract File_Access_Control {
         
         //require(msg.sender == owner);
         
+        wallet.transfer(msg.value);
         
         ACL[req_id] = Access_Request_And_Response ( {Req:req , Z_U:""  });
         return "Done" ;
         
         
-        // File Uploaded_file = fooStruct({foo:1, fighter:2});
+        
         
         
     }
